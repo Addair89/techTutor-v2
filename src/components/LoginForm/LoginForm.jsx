@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import * as usersService from "../../utilities/users-service";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -9,6 +10,7 @@ export default function LoginForm({ setUser }) {
     password: "",
   });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
@@ -24,22 +26,23 @@ export default function LoginForm({ setUser }) {
       // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
       setUser(user);
+      navigate("/");
     } catch {
       setError("Log In Failed - Try Again");
     }
   }
 
   return (
-    <div className="flex flex-col items-center gap-5 border-2 border-white p-5 rounded-lg bg-black/40 w-full shadow-lg">
-      <h1 className="mb-10 text-8xl text-white">Log In</h1>
+    <div className="flex flex-col items-center gap-5  p-5 rounded-lg bg-gradient-to-bl from-[#5390D9]/60 to-[#7400B8]/60 w-full shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+      <h1 className="mb-10 text-[8vmin] text-white">Log In</h1>
 
       <form
-        className="flex flex-col items-center gap-4 w-full"
+        className="flex flex-col items-stretch gap-4 w-full"
         autoComplete="off"
         onSubmit={handleSubmit}
       >
         <input
-          className="bg-black/10 border-2 border-[#6930C3] text-white text-4xl rounded-md p-2  placeholder:text-[white] focus:outline-none focus:bg-black/60"
+          className="bg-black/10  text-white text-[3vmin] rounded-md p-2  placeholder:text-[white] focus:outline-none focus:bg-black/60"
           type="text"
           name="email"
           value={credentials.email}
@@ -48,7 +51,7 @@ export default function LoginForm({ setUser }) {
           required
         />
         <input
-          className="bg-black/10 border-2 border-[#6930C3] text-white text-4xl rounded-md p-2 placeholder:text-[white] focus:outline-none focus:bg-black/60"
+          className="bg-black/10  text-white text-[3vmin] rounded-md p-2 placeholder:text-[white] focus:outline-none focus:bg-black/60"
           placeholder="Password..."
           type="password"
           name="password"

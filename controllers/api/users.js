@@ -1,12 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../../models/user");
 const bcrypt = require("bcrypt");
-
-module.exports = {
-  create,
-  login,
-  checkToken,
-};
+const Quiz = require("../../models/quiz");
 
 async function create(req, res) {
   try {
@@ -52,3 +47,40 @@ function checkToken(req, res) {
   console.log("req.user", req.user);
   res.json(req.exp);
 }
+
+const getQuizzes = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.query.userId });
+    const quizzes = await Quiz.find({ user: user._id });
+    res.status(200).json(quizzes);
+    return quizzes;
+  } catch (error) {}
+};
+
+const getScore = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.query.userId });
+    const score = user.score;
+    res.status(200).json(score);
+    return score;
+  } catch (error) {}
+};
+
+const getRank = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.query.userId });
+    console.log("----------------------user Rank------------", user.rank);
+    const rank = user.rank;
+    res.status(200).json(rank);
+    return rank;
+  } catch (error) {}
+};
+
+module.exports = {
+  create,
+  login,
+  checkToken,
+  getQuizzes,
+  getScore,
+  getRank,
+};

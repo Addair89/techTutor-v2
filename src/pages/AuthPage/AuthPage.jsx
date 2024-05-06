@@ -7,11 +7,11 @@ const AuthPage = ({ setUser }) => {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
-    <main className="AuthPage grid grid-cols-2 justify-center items-center  h-screen relative bg-[#5E60CE]/10">
+    <main className="AuthPage min-h-[100vh] grid grid-cols-2 justify-center items-center relative bg-[#5E60CE]/10">
       <div>
         <img src={Logo} alt="" className=" w-4/6 m-auto rounded-full" />
       </div>
-      <div className="mx-auto w-3/5 flex flex-col items-center">
+      <div className="mx-auto my-10 w-3/5 flex flex-col items-center">
         {showLogin ? (
           <LoginForm setUser={setUser} />
         ) : (

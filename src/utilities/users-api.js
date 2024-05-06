@@ -12,3 +12,38 @@ export function login(credentials) {
 export function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`);
 }
+
+export async function getUserQuizData(userId) {
+  try {
+    const response = await sendRequest(
+      `${BASE_URL}/quiz-data?userId=${userId}`,
+      "GET"
+    );
+    return response;
+  } catch (error) {
+    console.log("Error getting user quiz data", error);
+  }
+}
+export async function getUserScoreData(userId) {
+  try {
+    const response = await sendRequest(
+      `${BASE_URL}/score-data?userId=${userId}`,
+      "GET"
+    );
+    return response;
+  } catch (error) {
+    console.log("Error getting user quiz data", error);
+  }
+}
+
+export async function getUserRank(userId) {
+  try {
+    const response = await sendRequest(
+      `${BASE_URL}/user-rank?userId=${userId}`,
+      "GET"
+    );
+    return response;
+  } catch (error) {
+    console.log("Error getting user quiz data", error);
+  }
+}

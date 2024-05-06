@@ -7,8 +7,8 @@ const SALT_ROUNDS = 6;
 const userSchema = new Schema(
   {
     name: { type: String, required: true },
-    score: { type: Number, default: 1 },
-    rank: { type: String, default: "Novice" },
+    score: { type: Number, default: 0 },
+    rank: { type: String },
     quizHistory: { type: Array },
     email: {
       type: String,
