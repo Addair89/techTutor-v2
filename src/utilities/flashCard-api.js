@@ -19,6 +19,15 @@ export async function addFlashCard(question, user) {
   }
 }
 
+export async function deleteFlashCard(cardId, user) {
+  try {
+    const url = `${BASE_URL}/delete-flash-card/${cardId}/${user._id}`;
+    const method = "DELETE";
+    const response = await sendRequest(url, method);
+    return response;
+  } catch (error) {}
+}
+
 export async function getFlashCards(userId) {
   console.log(userId);
   try {
@@ -53,6 +62,43 @@ export async function addUserDefinedCard(question, answer, user) {
     return response;
   } catch (error) {
     console.error(error);
-    throw error;
+    throw new error();
   }
+}
+
+export async function getUserDefinedCards(userId) {
+  try {
+    const response = await sendRequest(`${BASE_URL}/get-user-cards/${userId}`);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function removeUserCard(cardId) {
+  try {
+    const response = await sendRequest(
+      `${BASE_URL}/remove-user-card/${cardId}`,
+      "DELETE"
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updateUserCard(cardId, question, answer) {
+  const payload = {
+    cardId,
+    question,
+    answer,
+  };
+  try {
+    const response = sendRequest(
+      `${BASE_URL}/update-user-card`,
+      "POST",
+      payload
+    );
+    return response;
+  } catch (error) {}
 }

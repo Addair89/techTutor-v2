@@ -63,8 +63,10 @@ const Quiz = ({
   return (
     <div className="min-h-[100vh]">
       {!startQuiz ? (
-        <div className="p-20 bg-gradient-to-t from-[white]/60 to-[#7400B8] w-[60vw] h-[70vh] rounded-xl shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex flex-col items-center">
-          <h1 className="text-[8.5vmin] text-white/90">Select A Quiz</h1>
+        <div className="py-20  w-[60vw] h-[70vh] rounded-xl flex flex-col items-center">
+          <h1 className="lg:text-[8.5vmin] text-[10.5vmin] text-white/90">
+            Select A Quiz
+          </h1>
           <div className="p-5 flex gap-5">
             <select
               className="h-[50px] bg-black/60 text-white/80 focus:outline-none p-4 rounded-3xl capitalize transition-all duration-300 ease-in-out"
@@ -96,25 +98,25 @@ const Quiz = ({
 
           {selectedCategory.length > 0 && selectedDifficulty.length > 0 && (
             <div className="flex flex-col gap-5">
-              <h1 className="text-[5.5vmin] text-white capitalize transition-all duration-300 ease-in-out">
+              <h1 className="lg:text-[5.5vmin] text-[7.5vmin] text-white capitalize transition-all duration-300 ease-in-out">
                 Start Your{" "}
-                <span className=" text-[#7400B8] capitalize">
+                <span className=" text-[#80FFDB] capitalize">
                   {selectedDifficulty} {selectedCategory}
                 </span>{" "}
                 Quiz?
               </h1>
               <div className="flex items-center justify-center gap-10 w-full transition-all duration-300 ease-in-out">
                 <Link
-                  className=" flex justify-center text-[2.5vmin] w-full p-4 bg-[#7400B8] rounded-full text-white hover:bg-[#48BFE3] hover:text-[#7400B8] transition-all duration-300 ease-in-out"
+                  className=" flex justify-center text-[5.5vmin] lg:text-[2.5vmin] border-2 border-white/70 w-full p-4 bg-[#7400B8] rounded-full text-white hover:bg-[#48BFE3] hover:text-[#7400B8] transition-all duration-300 ease-in-out"
                   to="/questions"
                 >
                   Yes
                 </Link>
                 <button
-                  className="text-[2.5vmin] p-4 w-full bg-[#7400B8] rounded-full text-white hover:bg-[#48BFE3] hover:text-[#7400B8] transition-all duration-300 ease-in-out"
+                  className="lg:text-[2.5vmin] text-[5.5vmin] p-4 w-full border-2 border-white/70 bg-[#7400B8] rounded-full text-white hover:bg-[#48BFE3] hover:text-[#7400B8] transition-all duration-300 ease-in-out"
                   onClick={handleChangeQuiz}
                 >
-                  Change Quiz
+                  No
                 </button>
               </div>
             </div>

@@ -10,6 +10,7 @@ import {
 const QuizResults = ({ questions, answers, user, category, difficulty }) => {
   console.log("__________RENDERED__________");
   const [flashCards, setFlashCards] = useState([]);
+  const [showExplanation, setShowExplanation] = useState(null);
 
   const { count, wrongAnswers } = checkResults(questions, answers);
 
@@ -31,6 +32,10 @@ const QuizResults = ({ questions, answers, user, category, difficulty }) => {
     getUserFlashCards();
   }, [questions, answers, user, category, difficulty]);
   console.log(flashCards);
+
+  const handleToggleExplanation = (index) => {
+    setShowExplanation((prevIndex) => (prevIndex === index ? null : index));
+  };
 
   const checkQuestionInFlashCard = (questionId) => {
     return flashCards.some((flashcard) => flashcard.question === questionId);
@@ -71,13 +76,14 @@ const QuizResults = ({ questions, answers, user, category, difficulty }) => {
               correctAnswer
                 ? "border-2 border-green-500 "
                 : "border-2 border-red-500 "
-            }relative m-5 min-w[80%] p-5  w-full bg-[black]/50 hover:bg-[black]/40 rounded-xl hover:text-white transition-all duration-300 ease-in-out`}
+            }relative m-5 min-w[80%] p-5  w-full bg-[black]/50 hover:bg-[black]/40 rounded-xl hover:text-white transition-all duration-300 ease-in-out overflow-auto`}
           >
             <p className="text-[3.5vmin] text-white pt-5">
               Q{index + 1}: {question.question}
             </p>
             <p className={correctAnswer ? "text-green-400" : "text-red-500"}>
-              Your Answer: {answers[question._id].option}
+              Your Answer:
+              <br /> {answers[question._id].option}
             </p>
             {isAlreadyFlashCard ? (
               <p
@@ -94,9 +100,15 @@ const QuizResults = ({ questions, answers, user, category, difficulty }) => {
                 Make Flash Card
               </p>
             )}
-            <button className=" text-[2vmin] rounded-full text-white hover:bg-[#48BFE3] hover:text-[#7400B8] transition-all duration-300 ease-in-out absolute bottom-2 right-2">
+            <button
+              onClick={() => handleToggleExplanation(index)}
+              className="text-[2vmin] rounded-full text-white hover:bg-[#48BFE3] hover:text-[#7400B8] transition-all duration-300 ease-in-out absolute bottom-2 right-2"
+            >
               Explanation
             </button>
+            {showExplanation === index && (
+              <div className="text-[3vmin] mb-3">{question.explanation}</div>
+            )}
           </div>
         );
       })}

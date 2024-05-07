@@ -53,9 +53,50 @@ const deleteOne = async (req, res) => {
   }
 };
 
+const getUserCards = async (req, res) => {
+  try {
+    const cards = await UserFlashCard.find({ user: req.params.userId });
+    res.status(200).json(cards);
+  } catch (error) {
+    console.log("ERROR GETTING FLASH CARDS", error);
+  }
+};
+
+const deleteOneUserCard = async (req, res) => {
+  try {
+    const userCard = await UserFlashCard.deleteOne({ _id: req.params.cardId });
+    res
+      .status(200)
+      .json({ message: "FlashCard Deleted successfully", userCard });
+  } catch (error) {
+    console.log("ERROR GETTING USERFLASH CARDS", error);
+  }
+};
+
+const updateUserCard = async (req, res) => {
+  const { cardId, question, answer } = req.body;
+  console.log(cardId, question, answer);
+  try {
+    const userCard = await UserFlashCard.updateOne(
+      { _id: cardId },
+      { $set: { question: question, answer: answer } }
+    );
+    console.log(userCard);
+    res
+      .status(200)
+      .json({ message: "User card updated successfully", userCard });
+  } catch (error) {
+    console.error("Error updating user card:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 module.exports = {
   add,
   addUserCard,
   getAll,
   deleteOne,
+  getUserCards,
+  deleteOneUserCard,
+  updateUserCard,
 };

@@ -33,7 +33,7 @@ export default function LoginForm({ setUser }) {
   }
 
   return (
-    <div className="flex flex-col items-center gap-5  p-5 rounded-lg bg-gradient-to-bl from-[#5390D9]/60 to-[#7400B8]/60 w-full shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+    <div className="flex flex-col items-center gap-5  p-5 rounded-lg  w-full ">
       <h1 className="mb-10 text-[8vmin] text-white">Log In</h1>
 
       <form
@@ -42,7 +42,7 @@ export default function LoginForm({ setUser }) {
         onSubmit={handleSubmit}
       >
         <input
-          className="bg-black/10  text-white text-[3vmin] rounded-md p-2  placeholder:text-[white] focus:outline-none focus:bg-black/60"
+          className="bg-white/50  text-white text-[3vmin] rounded-md p-2  placeholder:text-[black] focus:outline-none focus:bg-black/60 focus:placeholder:text-white"
           type="text"
           name="email"
           value={credentials.email}
@@ -51,7 +51,7 @@ export default function LoginForm({ setUser }) {
           required
         />
         <input
-          className="bg-black/10  text-white text-[3vmin] rounded-md p-2 placeholder:text-[white] focus:outline-none focus:bg-black/60"
+          className="bg-white/50  text-white text-[3vmin] rounded-md p-2 placeholder:text-[black] focus:outline-none focus:bg-black/60 focus:placeholder:text-white"
           placeholder="Password..."
           type="password"
           name="password"

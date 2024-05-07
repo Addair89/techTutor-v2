@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const QuizQuestions = ({ user, category, difficulty }) => {
   const [questions, setQuestions] = useState([]);
   const [questionIdx, setQuestionIdx] = useState(0);
-
+  const [showHint, setShowHint] = useState(false);
   const [optionSelected, setOptionSelected] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState({}); // Object to store selected options for each question
   const allQuestionsAnswered =
@@ -41,10 +41,13 @@ const QuizQuestions = ({ user, category, difficulty }) => {
   const handleQuestionSubmission = () => {
     setOptionSelected(false);
     setQuestionIdx((prevValue) => prevValue + 1);
+    setShowHint(false);
   };
 
+  console.log(currentQuestion);
+
   return (
-    <div className="flex relative flex-col items-center w-[70vw] mb-10 bg-gradient-to-t from-[white]/60 to-[#7400B8]  p-10 rounded-2xl min-h-[80vh] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+    <div className="flex relative flex-col items-center w-[70vw] mb-10 bg-gradient-to-t from-[#64acd3]/60 to-[#7400B8]/60  p-10 rounded-2xl min-h-[80vh] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
       <h1 className="capitalize text-[8.5vmin] text-[#80FFDB]">
         {category} {difficulty} Quiz
       </h1>
@@ -56,16 +59,26 @@ const QuizQuestions = ({ user, category, difficulty }) => {
           <div className="p-5">
             {currentQuestion.options.map((option, idx) => (
               <p
-                className="m-5 min-w[80%] p-5 text-[#572579] bg-[white]/70 hover:bg-[black]/40 rounded-xl hover:text-white transition-all duration-300 ease-in-out hover:cursor-pointer"
+                className={`m-5 min-w-[80%] p-5 text-[#572579] bg-[white]/70 rounded-xl ${
+                  selectedOptions[currentQuestion._id]?.optionIdx === idx
+                    ? "bg-[black]/40 text-white"
+                    : "bg-[white]/70 text-[#572579] hover:bg-[black]/40 hover:text-white hover:cursor-pointer"
+                } transition-all duration-300 ease-in-out`}
                 key={idx}
                 onClick={() => handleSelectOption(option, idx)}
               >
                 {idx + 1}: {option}
               </p>
             ))}
+            <button
+              onClick={() => setShowHint((prev) => !prev)}
+              className=" absolute bottom-0 right-5 text-[2.2vmin] mb-3 py-4 px-6 bg-[#7400B8] rounded-full text-white hover:bg-[#48BFE3] hover:text-[#7400B8] transition-all duration-300 ease-in-out"
+            >
+              Hint?
+            </button>
             {optionSelected ? (
               <button
-                className=" absolute bottom-[-2rem] right-5 text-[3.5vmin] mb-10 py-4 px-6 bg-[#7400B8] rounded-full text-white hover:bg-[#48BFE3] hover:text-[#7400B8] transition-all duration-300 ease-in-out"
+                className="absolute bottom-0 mb-3 left-5 text-[2.2vmin] py-4 px-6 bg-[#7400B8] rounded-full text-white hover:bg-[#48BFE3] hover:text-[#7400B8] transition-all duration-300 ease-in-out"
                 onClick={handleQuestionSubmission}
               >
                 Next
@@ -93,7 +106,11 @@ const QuizQuestions = ({ user, category, difficulty }) => {
           </Link>
         </>
       )}
-      <div></div>
+      {showHint && (
+        <div className="text-[#7400B8] font-semibold text-[2.2vmin] bg-[#80FFDB]/60 p-3 rounded-xl">
+          <i class="fa-regular fa-lightbulb"></i> {currentQuestion.hint}
+        </div>
+      )}
     </div>
   );
 };

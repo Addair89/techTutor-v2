@@ -1,5 +1,5 @@
 // testFetchQuestions.js
-const fetchQuestions = require("./src/utilities/questions-api");
+const fetchQuestions = require("./src/utilities/questionsAI-api");
 
 async function test() {
   const category = "React"; // Replace with your test category

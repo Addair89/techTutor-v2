@@ -18,9 +18,9 @@ export default function App() {
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
 
   return (
-    <main className="App relative bg-white/60 z-10 w-screen">
-      <div className="absolute top-[20%] -z-10 right-[10rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] bg-[#7400B8] "></div>
-      <div className="absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] bg-[#56CFE1]/70 "></div>
+    <main className="App relative bg-[#fafafa]/60 z-10 min-h-screen">
+      <div className="absolute lg:top-[20%] top-[50%] -z-10 right-[10rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] bg-[#7400B8] "></div>
+      <div className="absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] bg-[#48BFE3]/90 "></div>
 
       <NavBar user={user} setUser={setUser} />
 
@@ -28,7 +28,7 @@ export default function App() {
         <>
           <IconLogo user={user} />
           <br />
-          <div className="flex flex-col w-screen items-center mt-10">
+          <div className="flex flex-col  items-center md:mt-[7rem] xl:mt-[2rem]">
             <Routes>
               <Route path="/" element={<DashBoard user={user} />} />
               <Route

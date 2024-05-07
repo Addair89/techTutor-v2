@@ -8,7 +8,7 @@ async function fetchQuestions(category, difficulty) {
       messages: [
         {
           role: "system",
-          content: `Generate 10 ${difficulty}-level question about ${category} syntax. True or false only and give me the answer as well. Respond in JSON Format`,
+          content: `Generate 1 ${difficulty}-level question about ${category}. Respond in JSON Format i need fields for the question, answer, options, hint, explanation.`,
         },
       ],
       model: "gpt-4",
