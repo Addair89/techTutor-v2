@@ -1,6 +1,6 @@
 import sendRequest from "./send-request";
 const BASE_URL =
-  "https://tech-tutor-v2-4hukqb469-jareds-projects-a42592e1.vercel.app/api/users";
+  "https://tech-tutor-v2-crivys065-jareds-projects-a42592e1.vercel.app/api/users";
 
 export async function signUp(userData) {
   return sendRequest(`${BASE_URL}/`, "POST", userData);
