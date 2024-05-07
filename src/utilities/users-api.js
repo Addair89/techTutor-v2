@@ -1,5 +1,5 @@
 import sendRequest from "./send-request";
-const BASE_URL = "/api/users";
+const BASE_URL = "https://tech-tutor-v2.vercel.app/api/users";
 
 export async function signUp(userData) {
   return sendRequest(`${BASE_URL}/`, "POST", userData);
