@@ -61,8 +61,8 @@ const QuizQuestions = ({ user, category, difficulty }) => {
               <p
                 className={`m-5 min-w-[80%] p-5 text-[#572579] bg-[white]/70 rounded-xl ${
                   selectedOptions[currentQuestion._id]?.optionIdx === idx
-                    ? "bg-[black]/40 text-white"
-                    : "bg-[white]/70 text-[#572579] hover:bg-[black]/40 hover:text-white hover:cursor-pointer"
+                    ? "bg-black/40 text-white"
+                    : "bg-white/70 text-[#572579] hover:bg-[black]/40 hover:text-white hover:cursor-pointer"
                 } transition-all duration-300 ease-in-out`}
                 key={idx}
                 onClick={() => handleSelectOption(option, idx)}
