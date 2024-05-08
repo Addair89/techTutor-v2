@@ -14,7 +14,7 @@ const Card = ({
   return (
     <div
       onClick={onClick}
-      className={`w-[400px] h-[400px]  relative flex flex-col rounded-3xl overflow-auto gap-10 items-center justify-start text-[5.5vmin] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] transition-transform duration-[.5s] ${
+      className={`w-[400px] h-[400px]  relative flex flex-col rounded-3xl overflow-auto gap-10 items-center justify-start text-[5.5vmin] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] transition-transform duration-500 ${
         showFront
           ? " bg-gradient-to-t from-[#64acd399] to-[#7400b899]"
           : "bg-[#843ab4]/70"
@@ -39,14 +39,14 @@ const Card = ({
       )}
 
       <h3
-        className={` font-bold transition-all duration-5000 ${
+        className={` font-bold transition-all duration-1000 ${
           showFront ? "text-white" : "text-[#72EFDD]"
         }`}
       >
         {showFront ? "Question: " : "Answer: "}
       </h3>
       <p
-        className={` transition duration-[1s] ${
+        className={` transition duration-1000 ${
           showFront ? "text-white" : "text-[#72EFDD]"
         }  text-[6.5vmin] lg:text-[3.5vmin] p-8`}
       >

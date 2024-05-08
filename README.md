@@ -25,7 +25,7 @@ Flash Cards.
 
 Go to the link below, signup and begin your learning journey.
 
-link to deployed site here
+[live site](https://techtutor-3f12bdf80413.herokuapp.com/)
 
 [Trello Board](https://trello.com/b/QKs10lmV/reactapp)
 
